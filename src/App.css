@@ -22,6 +22,7 @@ body {
   background-color: #fff;
   color: #141737;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 a {
@@ -319,7 +320,6 @@ input {
   color: #888;
 }
 
-input[type='text'],
 input[type='email'],
 input[type='password'],
 input[type='date'],
@@ -436,6 +436,12 @@ table th {
   width: 100%;
 }
 
+@media (max-width: 1138px) {
+  .signup-wrapper {
+    border: 2px solid red;
+  }
+}
+
 .left-image-container {
   height: 100% !important;
   width: 100% !important;
@@ -457,11 +463,22 @@ table th {
 }
 .register {
   padding: 2.188rem 3.75rem;
-  width: 67.65vw !important;
-  margin-left: 31.25vw !important;
+  width: 67.65vw;
+  margin-left: 31.25vw;
   display: block;
   height: 56.25rem;
   z-index: 1;
+}
+@media (max-width: 1138px) {
+  .register {
+    margin-left: unset;
+    width: 97vw;
+  }
+}
+@media (max-width: 800px) {
+  .register {
+    padding: 2.188rem 1.375rem;
+  }
 }
 
 .tab {
@@ -536,8 +553,8 @@ input[type='number'] {
 }
 
 .verify,
-.social {
-  /* border: 2px solid red; */
+.social,
+.business {
   padding: 2.438rem 0;
 }
 .step {
@@ -598,7 +615,8 @@ label {
   margin: 0;
 }
 
-label {
+label,
+.pos-faq {
   font-weight: 600;
   font-size: 12px;
   line-height: 22px;
@@ -613,6 +631,7 @@ label {
   outline: none;
   font-size: 1rem;
   margin: 0;
+  color: #7d8da7;
 }
 
 .bvn-control {
@@ -740,4 +759,58 @@ select {
 }
 .cta-button button {
   margin-left: auto;
+}
+
+/*SOCIAL*/
+.social {
+  width: 100%;
+}
+.social-heading {
+  margin: 0;
+}
+.social-handles {
+  color: #a5b4cb;
+  font-size: 14px;
+  line-height: 22px;
+  margin-bottom: 2.438rem;
+}
+
+.abeg-form,
+.social-media,
+.business-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5rem;
+  margin-bottom: 1.625rem;
+}
+
+.abeg-input,
+.twitter-form,
+.insta-form {
+  width: 100%;
+}
+.ghost {
+  width: 100%;
+}
+
+/*BUSINESS*/
+.business-form .form-group {
+  width: 100%;
+}
+.pos-for-business {
+  display: block;
+  width: 100%;
+}
+.yes-no {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.313rem;
+}
+
+.tab-item-complete {
+  display: none;
 }

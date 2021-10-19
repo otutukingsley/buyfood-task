@@ -1,11 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Verify from './Verify'
 import Socials from './Socials'
 import Business from './Business'
+import { useViewPort } from './hooks/Viewport'
 
 const Signup = () => {
   const [openTab, setOpenTab] = useState(false)
   const [active, setActive] = useState(1)
+  const { width } = useViewPort()
+  const breakPoint = 1138
+  const breakPointTwo = 800
+  const breakPointThree = 555
 
   const nextPage = (e) => {
     setActive(active + 1)
@@ -20,23 +25,32 @@ const Signup = () => {
     }
   }
 
+  useEffect(() => {}, [])
+
   return (
     <div className="signup-wrapper">
-      <div className="left-flex">
-        <div className="left-image-container">
-          <img src="/images/card.svg" alt="logo" className="logo" />
+      {width > breakPoint && (
+        <div className="left-flex">
+          <div className="left-image-container">
+            <img src="/images/card.svg" alt="logo" className="logo" />
+          </div>
         </div>
-      </div>
+      )}
       <div className="register">
         <div className="btn-container">
           <button className="log-out btn btn-danger">Logout</button>
         </div>
         <div className="details-container">
-          <div className="mobile-menu" style={{ display: 'none' }}>
-            <p>Hello World</p>
-          </div>
-          <div className={openTab ? 'tab-active' : 'tab'}>
-            <div className={active === 1 ? 'tab-item-active' : 'tab-item'}>
+          <div className="tab">
+            <div
+              className={
+                active === 1
+                  ? 'tab-item-active'
+                  : active !== 1 && width < breakPointThree
+                  ? 'tab-item-complete'
+                  : 'tab-item'
+              }
+            >
               <span
                 className={`number ${active === 1 ? 'active' : 'inactive'}`}
               >
@@ -60,9 +74,17 @@ const Signup = () => {
                   </svg>
                 )}
               </span>{' '}
-              Verify Account
+              {width > breakPointTwo && 'Verify Account'}
             </div>
-            <div className={active === 2 ? 'tab-item-active' : 'tab-item'}>
+            <div
+              className={
+                active === 2
+                  ? 'tab-item-active'
+                  : active !== 2 && width < breakPointThree
+                  ? 'tab-item-complete'
+                  : 'tab-item'
+              }
+            >
               <span
                 className={`number ${active === 2 ? 'active' : 'inactive'}`}
               >
@@ -86,15 +108,23 @@ const Signup = () => {
                   2
                 )}
               </span>
-              Social Handles
+              {width > breakPointTwo && 'Social Handles'}
             </div>
-            <div className={active === 3 ? 'tab-item-active' : 'tab-item'}>
+            <div
+              className={
+                active === 3
+                  ? 'tab-item-active'
+                  : active !== 3 && width < breakPointThree
+                  ? 'tab-item-complete'
+                  : 'tab-item'
+              }
+            >
               <span
                 className={`number ${active === 3 ? 'active' : 'inactive'}`}
               >
                 3
               </span>
-              Business Category
+              {width > breakPointTwo && 'Business Category'}
             </div>
           </div>
           <div className="tab-content">
