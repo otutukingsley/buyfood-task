@@ -3,8 +3,11 @@ import BvnForm from './BvnForm'
 import AccountForm from './AccountForm'
 
 const Verify = () => {
+  // eslint-disable-next-line no-unused-vars
   const [bvn, setBvn] = useState('')
+  // eslint-disable-next-line no-unused-vars
   const [account, setAccount] = useState('')
+  // eslint-disable-next-line no-unused-vars
   const [bank, setBank] = useState('')
   const [active, setActive] = useState(1)
 
