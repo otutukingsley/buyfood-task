@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Socials = ({ nextPage, prevPage, activeTab, setActiveTab }) => {
+const Socials = () => {
   return (
     <div className="social">
       <p className="step">Step 2/3</p>
@@ -34,11 +34,6 @@ const Socials = ({ nextPage, prevPage, activeTab, setActiveTab }) => {
           </div>
         </div>
       </form>
-      <div className="cta-button">
-        <button onClick={nextPage} className="btn btn-primary">
-          Confirm Social Handles
-        </button>
-      </div>
     </div>
   )
 }

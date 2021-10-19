@@ -75,11 +75,6 @@ const Business = () => {
           </button>
         </div>
       </div>
-      <div className="cta-button">
-        <button className="btn btn-primary">
-          Complete
-        </button>
-      </div>
     </div>
   )
 }

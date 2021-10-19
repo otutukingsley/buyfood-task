@@ -1,15 +1,28 @@
 import React, { useState } from 'react'
+import { useViewPort } from '../hooks/Viewport';
 
-const BvnForm = () => {
+const BvnForm = ({ handleBvn }) => {
   const [rotate, setRotate] = useState(false)
+  const [bvn, setBvn] = useState('')
+  const { width } = useViewPort()
+  const breakPoint = 600;
 
   const onClick = () => {
     setRotate(!rotate)
   }
 
+  const onSubmit = (e) => {
+    e.preventDefault()
+    handleBvn(bvn)
+  }
+
+  const onChange = (e) => {
+    setBvn(e.target.value)
+  }
+
   return (
     <div className="bvn-form">
-      <form>
+      <form onSubmit={onSubmit}>
         <div className="bvn-group">
           <div className="form-group">
             <label htmlFor="bvn">Bank Verification Number (11-digits)</label>
@@ -18,6 +31,8 @@ const BvnForm = () => {
               name="bvn"
               required
               className="form-control bvn-control"
+              value={bvn}
+              onChange={onChange}
             />
           </div>
         </div>
@@ -71,8 +86,8 @@ const BvnForm = () => {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M7.20711 0.926772L2.35355 5.78033L0 3.42677L0.707107 2.71967L2.35355 4.36611L6.5 0.219666L7.20711 0.926772Z"
                   fill="#56F2C3"
                 />
@@ -88,8 +103,8 @@ const BvnForm = () => {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M7.20711 0.926772L2.35355 5.78033L0 3.42677L0.707107 2.71967L2.35355 4.36611L6.5 0.219666L7.20711 0.926772Z"
                   fill="#56F2C3"
                 />
@@ -105,8 +120,8 @@ const BvnForm = () => {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M7.20711 0.926772L2.35355 5.78033L0 3.42677L0.707107 2.71967L2.35355 4.36611L6.5 0.219666L7.20711 0.926772Z"
                   fill="#56F2C3"
                 />
@@ -117,7 +132,7 @@ const BvnForm = () => {
           <div className="horizontal-rule"></div>
           <div className="safe">
             <p className="no-access">
-              <svg
+              {width > breakPoint && <svg
                 xmlns="http://www.w3.org/2000/svg"
                 version="1.1"
                 width="8px"
@@ -180,7 +195,7 @@ const BvnForm = () => {
                     d="M -0.5,3.5 C -0.166667,3.5 0.166667,3.5 0.5,3.5C 1.83333,4.83333 1.83333,6.16667 0.5,7.5C 0.166667,7.5 -0.166667,7.5 -0.5,7.5C -0.5,6.16667 -0.5,4.83333 -0.5,3.5 Z"
                   />
                 </g>
-              </svg>{' '}{' '}
+              </svg>}{' '}{' '}
               Your BVN does not give us access to your bank accounts or
               transactions
             </p>

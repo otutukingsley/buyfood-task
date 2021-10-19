@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import Verify from './Verify'
-import Socials from './Socials'
-import Business from './Business'
+import React, { useState } from 'react'
+import Verify from './verify/Verify'
+import Socials from './socials/Socials'
+import Business from './business/Business'
 import { useViewPort } from './hooks/Viewport'
 
 const Signup = () => {
-  const [openTab, setOpenTab] = useState(false)
   const [active, setActive] = useState(1)
   const { width } = useViewPort()
   const breakPoint = 1138
@@ -25,8 +24,6 @@ const Signup = () => {
     }
   }
 
-  useEffect(() => {}, [])
-
   return (
     <div className="signup-wrapper">
       {width > breakPoint && (
@@ -37,9 +34,11 @@ const Signup = () => {
         </div>
       )}
       <div className="register">
-        <div className="btn-container">
-          <button className="log-out btn btn-danger">Logout</button>
-        </div>
+        {width > breakPointThree && (
+          <div className="btn-container">
+            <button className="log-out btn btn-danger">Logout</button>
+          </div>
+        )}
         <div className="details-container">
           <div className="tab">
             <div
@@ -67,9 +66,9 @@ const Signup = () => {
                     <path
                       d="M1.99854 4.49751L5.00103 7.5L11.0013 1.5"
                       stroke="#006AFF"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 )}
@@ -99,9 +98,9 @@ const Signup = () => {
                     <path
                       d="M1.99854 4.49751L5.00103 7.5L11.0013 1.5"
                       stroke="#006AFF"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 ) : (
@@ -153,9 +152,19 @@ const Signup = () => {
               />
             )}
           </div>
-          <div className="footer">
-            <button onClick={nextPage}>Continue</button>
-            <button onClick={prevPage}>Back</button>
+          <div className="cta-button">
+            <button className="btn btn-primary" onClick={nextPage}>
+              {active === 1
+                ? 'Continue'
+                : active === 2
+                ? 'Confirm Social Handles'
+                : 'Complete'}
+            </button>
+            {active > 1 && (
+              <button className="btn btn-primary" onClick={prevPage}>
+                Back
+              </button>
+            )}
           </div>
         </div>
       </div>

@@ -1,12 +1,23 @@
 import React, { useState } from 'react'
 
-const AccountForm = () => {
-  const [selectValue, setSelectValue] = useState(null)
+const AccountForm = ({ handleAccount }) => {
+  const [selectValue, setSelectValue] = useState('')
+  const [account, setAccount] = useState('')
+
   const handleSelect = (e) => {
     setSelectValue(e.target.value)
   }
+
+  const onChange = (e) => {
+    setAccount(e.target.value)
+  }
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+    handleAccount(selectValue, account)
+  }
   return (
-    <form className="account-form">
+    <form className="account-form" onSubmit={onSubmit}>
       <div className="account-number-group">
         <div className="form-group ">
           <label htmlFor="account">Account Number</label>
@@ -15,6 +26,8 @@ const AccountForm = () => {
             name="account"
             required
             className="form-control"
+            value={account}
+            onChange={onChange}
           />
         </div>
         <div className="form-group select">
@@ -24,6 +37,7 @@ const AccountForm = () => {
             id="standard-select"
             defaultValue={selectValue}
             onChange={handleSelect}
+            required
           >
             <option value="select">{' '}</option>
             <option value="access">Access Bank</option>

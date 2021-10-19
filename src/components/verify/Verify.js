@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import BvnForm from './BvnForm'
 import AccountForm from './AccountForm'
 
-const Verify = ({ nextPage, prevPage, activeTab, setActiveTab }) => {
-  const [bvn, setBvn] = useState(null)
-  const [account, setAccount] = useState(null)
+const Verify = () => {
+  const [bvn, setBvn] = useState('')
+  const [account, setAccount] = useState('')
   const [bank, setBank] = useState('')
   const [active, setActive] = useState(1)
 
@@ -15,14 +15,13 @@ const Verify = ({ nextPage, prevPage, activeTab, setActiveTab }) => {
     setActive(1)
   }
 
-  const onSubmit = () => {}
-
-  const handleBvn = (e) => {
-    setBvn(e.target.value)
+  const handleBvn = (value) => {
+    setBvn(value)
   }
 
-  const handleAccount = (e) => {
-    setAccount(e.target.value)
+  const handleAccount = (accountNumber, accountName) => {
+    setAccount(accountNumber)
+    setBank(accountName)
   }
 
   return (
@@ -44,13 +43,8 @@ const Verify = ({ nextPage, prevPage, activeTab, setActiveTab }) => {
           Personal Account Number
         </button>
       </div>
-      {active === 1 && <BvnForm />}
-      {active === 2 && <AccountForm />}
-      <div className="cta-button">
-        <button onClick={nextPage} className="btn btn-primary">
-          Continue
-        </button>
-      </div>
+      {active === 1 && <BvnForm handleBvn={handleBvn} />}
+      {active === 2 && <AccountForm handleAccount={handleAccount} />}
     </div>
   )
 }
